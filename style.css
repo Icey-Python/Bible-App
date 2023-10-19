@@ -13,14 +13,14 @@
 /* Styles */
 body {
   background-color: var(--bg-color);
-  color: var(--text-dark);
+  color: var(--text-light);
   font-family: 'Open Sans', sans-serif;
   margin: 0;
   padding: 0;
 }
 
 .nav-bar {
-  background-color: var(--sky-blue);
+  background-color: var(--blue-gray);
   color: var(--text-light);
   padding: 1rem;
   display: flex;
@@ -52,15 +52,22 @@ body {
   margin: 2rem auto;
   border-radius: 5px;
   box-shadow: 0 0 10px #ddd;
+  position:relative
 }
 
 .search-bar input {
-  width: 100%;
+  width: 95%;
   padding: 0.5rem;
   border: none;
   border-bottom: 2px solid var(--teal);
 }
-
+.verse-image{
+ max-width:600px;
+  margin-inline:auto;
+  padding:1.5rem;
+  font-weight: bold;
+  background:url("https://images.unsplash.com/photo-1606431317965-9f3d80d6f425?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80")
+}
 /* Styling verse image */
 
 .download-button {
@@ -69,6 +76,7 @@ body {
   padding: 0.5rem 1rem;
   border-radius: 5px;
   border: none;
+  margin-top:1rem;
 }
 
 .download-button:hover {
