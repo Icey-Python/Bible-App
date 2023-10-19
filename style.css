@@ -20,7 +20,7 @@ body {
 }
 
 .nav-bar {
-  background-color: var(--blue-gray);
+  background-color: var(--bronze);
   color: var(--text-light);
   padding: 1rem;
   display: flex;
@@ -59,27 +59,88 @@ body {
   width: 95%;
   padding: 0.5rem;
   border: none;
-  border-bottom: 2px solid var(--teal);
+  border-bottom: 2px solid var(--bronze);
 }
-.verse-image{
- max-width:600px;
+
+.card {
+  width: 400px;
+  min-height: 100px;
+  max-height:auto;
   margin-inline:auto;
-  padding:1.5rem;
-  font-weight: bold;
-  background:url("https://images.unsplash.com/photo-1606431317965-9f3d80d6f425?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80")
+  border-radius: 15px;
+  background: var(--bronze);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
 }
-/* Styling verse image */
 
-.download-button {
-  background-color: var(--teal);
-  color: var(--text-light);
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
+.card::before {
+  content: "";
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  top: -40%;
+  left: -20%;
+  border-radius: 50%;
+  border: 35px solid rgba(255, 255, 255, 0.102);
+  transition: all .8s ease;
+  filter: blur(.5rem);
+}
+
+.text {
+  flex-grow: 1;
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  color: var(--text-dark);
+  font-weight: 900;
+  font-size: 1.2em;
+}
+sup{
+  font-weight:100;
+  font-size:0.7em;
+  color:var(--bg-color);
+}
+.subtitle {
+  font-size: 0.7em;
+  font-weight: 300;
+  color: var(--bg-color);
+}
+
+.icons {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  width: 200px;
+  border-radius: 15px 15px 15px 15px;
+  overflow: hidden;
+}
+
+.btn {
   border: none;
-  margin-top:1rem;
+  width: 84px;
+  height: 35px;
+  background-color: rgba(247, 234, 234, 0.589);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.download-button:hover {
-  cursor: pointer;
-  background-color: var(--sky-blue);
+.svg-icon {
+  width: 25px;
+  height: 25px;
+  stroke: var(--text-dark);
+}
+
+.btn:hover {
+  background-color: var(--bg-color);
+}
+
+.card:hover::before {
+  width: 140px;
+  height: 140px;
+  top: -30%;
+  left: 50%;
+  filter: blur(0rem);
 }

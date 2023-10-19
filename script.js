@@ -4,9 +4,8 @@ const searchApiUrl = 'https://api.scripture.api.bible'; // Bible Search API for 
 const searchApiKey = "5cfb367b2e99f0a9621b9bfc1e6b6cbe"; 
 
 // Get reference to elements
-const verseNum = document.querySelector('.verse-number');  
-const verseText = document.querySelector('.verse-text');
-const version = document.querySelector('.version');
+const verseNum = document.querySelector('.subtitle');  
+const verseText = document.querySelector('.text span');
 // Get search box element
 const searchBox = document.querySelector('#s_query');
 
@@ -18,7 +17,6 @@ searchBox.addEventListener('keypress', (event) => {
 
     // Get search query
     const query = searchBox.value;
-    console.log(query)
     // Call search function
     getVerse(query);
 
@@ -35,8 +33,11 @@ async function getVerse(reference) {
 
   // Update elements
   verseNum.textContent = data.reference;
-  verseText.textContent = data.text;
-  version.textContent = `~${data.translation_id}~`;
+  let structured_chapter = ""
+  data.verses.forEach((verse,index)=>{
+    structured_chapter += "<sup>"+(parseInt(index,10)+1)+"</sup>"+" "+verse.text + "<br/><br/>"
+  })
+  verseText.innerHTML =structured_chapter ;
 
 }
 
@@ -57,16 +58,6 @@ async function searchVerses(query) {
     body: params
   });
   console.log(response)
-  
-  // const data = await response.json();
-
-  // // Get first result
-  // const verse = data.data[0]; 
-
-  // // Update elements
-  // verseNum.textContent = verse.reference;
-  // verseText.textContent = verse.text;
-  // version.textContent = verse.version;
 
 }
 
