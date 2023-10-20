@@ -12,6 +12,8 @@
 
 /* Styles */
 body {
+  width:100vw;
+  min-height:100vh;
   background-color: var(--bg-color);
   color: var(--text-light);
   font-family: 'Open Sans', sans-serif;
@@ -26,7 +28,7 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: radial-gradient(circle, var(--bronze) 5%, transparent 10%);
+  background-image: radial-gradient(circle, var(--bronze) 2%, transparent 10%);
   background-size: 30px 30px;
   z-index:-1;
 }
@@ -158,7 +160,7 @@ sup{
 .card:hover::before {
   width: 140px;
   height: 140px;
-  top: -30%;
+  top: 60%;
   left: 50%;
   filter: blur(0rem);
 }
