@@ -81,18 +81,23 @@ body::before {
   border: none;
   border-bottom: 2px solid var(--bronze);
 }
-
-.card {
-  width: 60%;
-  min-height: 100px;
-  max-height:auto;
+main{
+  width:80vw;
+  height:fit-content;
+  display:flex;
+  justify-items: space-evenly;
   margin-inline:auto;
+}
+.card {
+  min-width: 50%;
+  height:fit-content;
   border-radius: 15px;
   background: var(--bronze);
   display: flex;
   flex-direction: column;
   position: relative;
   overflow: hidden;
+  margin-left:2rem;
 }
 
 .card::before {
@@ -206,7 +211,8 @@ sup{
   --border-radius: 0.75rem;
   --primary-color: #7257fa;
   --secondary-color: #3c3852;
-  width: 60%;
+  width: 50%;
+  height:fit-content;
   font-family: "Arial";
   padding: 0.5rem;
   cursor: pointer;
@@ -214,8 +220,7 @@ sup{
   background: var(--sky-blue);
   box-shadow: 0px 8px 16px 0px rgb(0 0 0 / 3%);
   position: relative;
-  margin-inline:auto;
-  margin-top:1rem;
+  margin-left: 1rem;
 }
 
 .note > * + * {
@@ -236,6 +241,7 @@ sup{
 .note .note__date {
   color: #6e6b80;
   font-size: 0.8rem;
+  display:none
 }
 
 .note .note__arrow {

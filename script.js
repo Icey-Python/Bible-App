@@ -8,7 +8,7 @@ const verseNum = document.querySelector('.subtitle');
 const verseText = document.querySelector('.text span');
 // Get search box element
 const searchBox = document.querySelector('#s_query');
-
+const noteContainer = document.querySelector('.note__content')
 // Add event listener for keypress
 searchBox.addEventListener('keypress', (event) => {
 
@@ -27,17 +27,30 @@ searchBox.addEventListener('keypress', (event) => {
 
 // Get verse by reference
 async function getVerse(reference) {
+  noteContainer.textContent = ''
   try {
     const response = await fetch(`${apiUrl}/${reference}?translation=bbe`);
     const data = await response.json();
 
     // Update elements
     verseNum.textContent = data.reference;
+    let verses = ""
     let structured_chapter = "";
     data.verses.forEach((verse, index) => {
+      verses += verse.text.replace('\n',' ')
       structured_chapter += "<sup>" + (parseInt(index, 10) + 1) + "</sup>" + " " + verse.text + "<br/><br/>";
     });
     verseText.innerHTML = structured_chapter;
+    
+    const bibleText = verses;
+    summarize(bibleText)
+      .then(summary => {
+        noteContainer.innerHTML = summary.replace('-', '<br>').replace('"',' ').replace('"',' ');
+      })
+      .catch(error => {
+        console.log(error); 
+      });
+    
   } catch (error) {
     verseNum.textContent = "Error fetching verse";
     verseText.innerHTML = `<p>An error occurred while fetching the verse: Check for typos then try again</p>`;
@@ -51,7 +64,7 @@ async function searchVerses(query) {
 
   const params = `{
     "query": "${query}",
-    "version": "kjv"
+    "version": "bbe"
   }`;
 
   const response = await fetch(`${searchApiUrl}/verses`, {
@@ -63,6 +76,26 @@ async function searchVerses(query) {
     body: params
   });
   console.log(response)
+
+}
+
+// Summarize text function
+async function summarize(text) {
+
+  // Encode text for URL
+  const encodedText = encodeURIComponent(text);
+
+  // API endpoint
+  const apiUrl = 'https://bible-app.icey-python.repl.co/summarize?text=';
+
+  // Build request URL
+  const url = apiUrl + encodedText;
+
+  // Make GET request
+  const response = await fetch(url);
+  const summary = await response.text();
+
+  return summary;
 
 }
 
